@@ -130,12 +130,12 @@ void newScen(int ids, int nsc, vert_pnew *vpnew, float latScen[], float longScen
 //    int news[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 //    int isbusy[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 //    int isenable[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-//    int n_scen, temp, i;
+//    int nScen, temp, i;
 //
-//    n_scen=d_scen->nNewScen;
+//    nScen=d_scen->nNewScen;
 //    temp=1;
 //    printf("temp: %i\n",temp);
-//    printf("n_scen: %i\n",d_scen->nNewScen);
+//    printf("nScen: %i\n",d_scen->nNewScen);
 //
 //    while(temp!=0){
 //        for(i=0;i<MAX_SC_NEW;i++){
@@ -172,35 +172,29 @@ void addNewScen(data_scen *d_scen){
     int news[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     int isbusy[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     int isenable[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    int n_scen, temp, i;
+    int nScen, i;
 
-    n_scen=d_scen->nNewScen;
-    temp=1;
-    printf("temp: %i\n",temp);
-    printf("n_scen: %i\n",d_scen->nNewScen);
+    nScen=d_scen->nNewScen;
+    printf("nScen: %i\n",d_scen->nNewScen);
 
-    while(temp!=0){
-        for(i=0;i<MAX_SC_NEW;i++){
-            if(news[i]==0){
-                if(isbusy[i]==0 && isenable[i]==0) //state 000
-                    printf("Estado 000. Generar nuevo escenario\n");
-                else if(isbusy[i]==1 && isenable[i]==0)
-                    printf("Estado 010. Escenario creado, ocupado pero no habilitado\n");
-                else if(isbusy[i]==1 && isenable[i]==1)
-                    printf("Estado 011. Escenario creado, ocupado y habilitado\n");}
+    for(i=0;i<MAX_SC_NEW;i++){
+        if(news[i]==0){
+            if(isbusy[i]==0 && isenable[i]==0) //state 000
+                printf("Estado 000. Generar nuevo escenario\n");
+            else if(isbusy[i]==1 && isenable[i]==0)
+                printf("Estado 010. Escenario creado, ocupado pero no habilitado\n");
+            else if(isbusy[i]==1 && isenable[i]==1)
+                printf("Estado 011. Escenario creado, ocupado y habilitado\n");}
             else if(news[i]==1){
-                if(isbusy[i]==0 && isenable[i]==0) //state 000
-                    printf("Estado 100. Generar nuevo escenario. Posición vacía y deshabilitada\n");
-                else if(isbusy[i]==0 && isenable[i]==1)
-                    printf("Estado 101. Estado no posible\n");
-                else if(isbusy[i]==1 && isenable[i]==0)
-                    printf("Estado 110. Sobreescribir escenario deshabilitado, para ingresar uno nuevo\n");
-                else if(isbusy[i]==1 && isenable[i]==1)
-                    printf("Estado 111. Estado no posible\n");}
+            if(isbusy[i]==0 && isenable[i]==0) //state 000
+                printf("Estado 100. Generar nuevo escenario. Posición vacía y deshabilitada\n");
+            else if(isbusy[i]==0 && isenable[i]==1)
+                printf("Estado 101. Estado no posible\n");
+            else if(isbusy[i]==1 && isenable[i]==0)
+                printf("Estado 110. Sobreescribir escenario deshabilitado, para ingresar uno nuevo\n");
+            else if(isbusy[i]==1 && isenable[i]==1)
+                printf("Estado 111. Estado no posible\n");}
         }
-        temp--;
-        printf("temp: %i\n");
-    }
 
 }
 
