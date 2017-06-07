@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdbool.h>
 
 #include "scenarios.h"
 //#include "config.h"
@@ -79,8 +80,6 @@ int pnPoly(int scen, vert_p *vp,float X,float Y)
 * if >= point's X; if so, the ray hits it.
 */
 
-
-
 /**
 *@brief New scenarios
 *For new scenarios, the limits are 10 new scenarios and until 20 points (longitude and latitude) as maximum
@@ -116,95 +115,229 @@ void newScen(int ids, int nsc, vert_pnew *vpnew, float latScen[], float longScen
 }
 
 /**
-*@brief Control New Scenarios
-*@param int nNewScen: number of new scenarios
-*@param int isbusy: scenario availability. 0: Empty, 1:Busy
-*@param int isenable
+*@brief Numbers of New Scenario Available to add
+*@param bool news[]
+*@param bool isbusy[]
+*@param bool isenable[]
 *@returns
 */
-//void addNewScen(data_scen *d_scen){
-//    printf("entra a control_nscen\n");
-//    //int news: number of new scenario
-//    //int isbusy: scenario availability. 0: Empty, 1:Busy
-//    //int isenable: isenable or disable the scenario. 0:Disable, 1:isenable
-//    int news[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-//    int isbusy[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-//    int isenable[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-//    int nScen, temp, i;
-//
-//    nScen=d_scen->nNewScen;
-//    temp=1;
-//    printf("temp: %i\n",temp);
-//    printf("nScen: %i\n",d_scen->nNewScen);
-//
-//    while(temp!=0){
-//        for(i=0;i<MAX_SC_NEW;i++){
-//            if(news[i]==0){
-//                if(isbusy[i]==0 && isenable[i]==0) //state 000
-//                    printf("Estado 000. Generar nuevo escenario\n");
-//                else if(isbusy[i]==0 && isenable[i]==1)
-//                    printf("Estado 001. Estado no posible\n");
-//                else if(isbusy[i]==1 && isenable[i]==0)
-//                    printf("Estado 010. Escenario creado, ocupado pero no habilitado\n");
-//                else if(isbusy[i]==1 && isenable[i]==1)
-//                    printf("Estado 011. Escenario creado, ocupado y habilitado\n");}
-//            else if(news[i]==1){
-//                if(isbusy[i]==0 && isenable[i]==0) //state 000
-//                    printf("Estado 100. Generar nuevo escenario. Posición vacía y deshabilitada\n");
-//                else if(isbusy[i]==0 && isenable[i]==1)
-//                    printf("Estado 101. Estado no posible\n");
-//                else if(isbusy[i]==1 && isenable[i]==0)
-//                    printf("Estado 110. Sobreescribir escenario deshabilitado, para ingresar uno nuevo\n");
-//                else if(isbusy[i]==1 && isenable[i]==1)
-//                    printf("Estado 111. Estado no posible\n");}
-//        }
-//        temp--;
-//        printf("temp: %i\n");
-//    }
-//
-//}
-
-void addNewScen(data_scen *d_scen){
-    printf("entra a control_nscen\n");
-    //int news: number of new scenario
-    //int isbusy: scenario availability. 0: Empty, 1:Busy
-    //int isenable: isenable or disable the scenario. 0:Disable, 1:isenable
-    int news[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    int isbusy[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    int isenable[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    int nScen, i;
-
-    nScen=d_scen->nNewScen;
-    printf("nScen: %i\n",d_scen->nNewScen);
-
+int nNewScenAvailable(bool news[], bool isbusy[], bool isenable[]){
+    int i;
+    int contAvail=0, contDisavail=0;
     for(i=0;i<MAX_SC_NEW;i++){
         if(news[i]==0){
-            if(isbusy[i]==0 && isenable[i]==0) //state 000
-                printf("Estado 000. Generar nuevo escenario\n");
-            else if(isbusy[i]==1 && isenable[i]==0)
-                printf("Estado 010. Escenario creado, ocupado pero no habilitado\n");
-            else if(isbusy[i]==1 && isenable[i]==1)
-                printf("Estado 011. Escenario creado, ocupado y habilitado\n");}
-            else if(news[i]==1){
-            if(isbusy[i]==0 && isenable[i]==0) //state 000
-                printf("Estado 100. Generar nuevo escenario. Posición vacía y deshabilitada\n");
-            else if(isbusy[i]==0 && isenable[i]==1)
-                printf("Estado 101. Estado no posible\n");
-            else if(isbusy[i]==1 && isenable[i]==0)
-                printf("Estado 110. Sobreescribir escenario deshabilitado, para ingresar uno nuevo\n");
-            else if(isbusy[i]==1 && isenable[i]==1)
-                printf("Estado 111. Estado no posible\n");}
+            if(isbusy[i]==0)
+                contAvail++;
+//            else if(isbusy[i]==1 && isenable[i]==0)
+//                contDisavail++;
+//            else if(isbusy[i]==1 && isenable[i]==1)
+//                contDisavail++;
         }
-
+        if(news[i]==1){
+            if(isbusy[i]==0)
+                contAvail++;
+            else if(isbusy[i]==1 && isenable[i]==0)
+                contAvail++;
+//            else if(isbusy[i]==1 && isenable[i]==1){
+//                contDisavail++;
+//                }
+        }
+    }
+    return contAvail;
 }
 
+//bool *initNewsVector(){
+//    bool news[MAX_SC_NEW]={0};      /**<bool news: free scenario number. 0: Free, 1:New*/
+//    return news;
+//}
+//bool *itinIsbusyVector(){
+//    bool isbusy[MAX_SC_NEW]={0};    /**<bool isbusy: scenario availability. 0: Empty, 1:Busy*/
+//    return isbusy;
+//}
+//bool *itinIsenableVector(){
+//    bool isenable[MAX_SC_NEW]={0};  /**<bool isenable: scenario enable. 0:disable, 1:enable*/
+//    return isenable;
+//}
+
+void initNewScenVectors(vec_nScen *v_nscen){
+    int i;
+    for(i=0;i<MAX_SC_NEW;i++){
+        v_nscen->news[i]=0;
+        v_nscen->isbusy[i]=0;
+        v_nscen->isenable[i]=0;
+    }
+}
+
+
+/**
+*@brief Add New Scenarios
+*@param data_scen *d_scen
+*@returns
+*/
+void addNewScen(data_scen *d_scen, bool news[], bool isbusy[], bool isenable[]){
+//void addNewScen(data_scen *d_scen){
+    printf("entra a addNewScen\n");
+
+    float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW] = {0};
+    float longitudeScen[MAX_SC_NEW][MAX_VERT_NEW] = {0};
+
+//    bool news[MAX_SC_NEW]={0};      /**<bool news: free scenario number. 0: Free, 1:New*/
+//    bool isbusy[MAX_SC_NEW]={0};    /**<bool isbusy: scenario availability. 0: Empty, 1:Busy*/
+//    bool isenable[MAX_SC_NEW]={0};  /**<bool isenable: scenario enable. 0:disable, 1:enable*/
+
+    int n_scen; /**<number of scenarios to add*/
+    int i, nScenAvailable=0, contBE=0, create=0;
+    int temp, n;
+
+    char filename[10] = "tlmy.txt";
+    FILE *file;
+
+    printf("The namefile for test case selected is %s\n", filename);
+//    printf("Title file is %s\n", title);
+
+    file = fopen( filename, "w" );
+    printf( "File: %s -> ", filename);
+    if(file)
+        printf( "Created (OPEN)\n" );
+    else
+    {
+        printf( "Error\n" );
+    }
+
+
+    n_scen=d_scen->nNewScen;
+    printf("n_scen: %i\n",d_scen->nNewScen);
+    temp=n_scen;
+    printf("temp: %i\n",temp);
+
+    n=nNewScenAvailable(news,isbusy,isenable); //ctos escenarios hay disponibles?
+    printf("n: %i\n",n);
+
+    while(temp>0){
+    printf("temp: %i\n",temp);
+    for(i=0;i<MAX_SC_NEW;i++){
+        if(news[i]==0){
+            if(isbusy[i]==0){ //state 000 100 101 no se deberia pero lo tenes que cubrir lo mismo
+            //000 & 001
+                loadLatitudeNScen (d_scen, latitudeScen,i);
+                loadLongitudeNScen (d_scen, longitudeScen,i);
+                //con esta indico cuales escenarios tengo disponibles
+                printf("Escenario desocupado\n");
+                isbusy[i] = 1;
+                isenable[i] = d_scen->newScenState[i];
+                temp--;
+                printf("temp: %i\n",temp);}
+            else if(isbusy[i]==1 && isenable[i]==1){
+                //aca indico que no tengo escenarios disponibles para guardar nuevos
+                contBE++;
+                //contador que te cuente cuandtos tenes en este estado
+                //si es 10 no tenes espacio
+                //si es menor a diez te da los espacios disponibles 10-cont
+                printf("Estado 011. Escenario creado, ocupado y habilitado\n");
+                //return
+            }
+        }
+
+        if(news[i]==1){
+            if(isbusy[i]==0 ){//state 100 & 101
+                //guardar el escenario
+//                loadScen(&d_scen.vertYNewScen[i][MAX_VERT_NEW], &d_scen.vertXNewScen[i][MAX_VERT_NEW], &latitudeScen[i][MAX_VERT_NEW], &longitudeScen[i][MAX_VERT_NEW]);
+                loadLatitudeNScen (d_scen, latitudeScen,i);
+                loadLongitudeNScen (d_scen, longitudeScen,i);
+                isbusy[i] = 1;
+                isenable[i] = d_scen->newScenState[i];
+                printf("Estado 100. Generar nuevo escenario. Posición vacía y deshabilitada\n");
+                temp--;}
+            else if(isbusy[i]==1 && isenable[i]==0){
+                loadLatitudeNScen (d_scen, latitudeScen,i);
+                loadLongitudeNScen (d_scen, longitudeScen,i);
+                isbusy[i] = 1;
+                isenable[i] = d_scen->newScenState[i];
+                printf("Estado 110. Sobreescribir escenario deshabilitado, para ingresar uno nuevo\n");
+                temp--;}
+            else if(isbusy[i]==1 && isenable[i]==1){
+                //devolver que no hay escenarios disponibles
+                printf("Estado 111. Estado no posible\n");
+                }
+        }
+    }
+    }
+//    for (i = 0; i < MAX_SC_NEW; i++){
+//        fprintf (file, "%i", news[i]);
+//    }
+//    fprintf (file, "\n");
+//    for (i = 0; i < MAX_SC_NEW; i++){
+//        fprintf (file, "%i", isbusy[i]);
+//    }
+//    fprintf (file, "\n");
+//    for (i = 0; i < MAX_SC_NEW; i++){
+//        fprintf (file, "%i", isenable[i]);
+//    }
+}
+//llamar los metodos para generar la telemetria
+
+/**
+*@brief Load Scenario (Lats and Longs)
+*@param data_scen *d_scen
+*@param float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW]
+*@param float longitudeScen[MAX_SC_NEW][MAX_VERT_NEW]
+*@param int i
+*@returns
+*/
+float *loadScen(data_scen *d_scen, float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW], float longitudeScen[MAX_SC_NEW][MAX_VERT_NEW],int i){
+    int j;
+    for(j=0; j <= MAX_VERT_NEW; j++){
+        latitudeScen[i][j] = d_scen->vertYNewScen[i][j];
+        longitudeScen[i][j] = d_scen->vertXNewScen[i][j];
+    }
+    //return *latitudeScen, *longitudeScen;
+}
+
+/**
+*@brief Load Latitude Scenario
+*@param data_scen *d_scen
+*@param float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW]
+*@param int i
+*@returns
+*/
+float *loadLatitudeNScen(data_scen *d_scen, float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW], int i){
+    int j;
+    for(j=0; j <= MAX_VERT_NEW; j++){
+//        latitudeScen[j] = vertXNewScen[j];
+        latitudeScen[i][j]=d_scen->vertXNewScen[i][j];
+    }
+    return *latitudeScen;
+}
+
+/**
+*@brief Load Longitude Scenario
+*@param data_scen *d_scen
+*@param float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW]
+*@param int i
+*@returns
+*/
+float *loadLongitudeNScen(data_scen *d_scen, float longitudeScen[MAX_SC_NEW][MAX_VERT_NEW], int i){
+    int j;
+    for(j=0; j <= MAX_VERT_NEW; j++){
+        longitudeScen[i][j] = d_scen->vertYNewScen[i][j];
+    }
+    return *longitudeScen;
+}
+
+
+/**
+*@brief Execute scenarios functions
+*@param
+*@returns
+*/
 //int main(){
 int scenarios(){
     vert_p vp1;
     float xs=-106.0;
     float ys=35.0;
-    int c,d;
+    int c,d,n;
 
+    /**<Load Fixed Scenarios*/
     initScenFixed(0,NSC0,&vp1,latSc0,longSc0);
     initScenFixed(1,NSC1,&vp1,latSc1,longSc1);
     initScenFixed(2,NSC2,&vp1,latSc2,longSc2);
@@ -216,6 +349,7 @@ int scenarios(){
     printf ("d=%i\n",d);
 
     data_scen dscen1;
+
     addNewScen(&dscen1);
 
     return 0;

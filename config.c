@@ -341,11 +341,11 @@ void config(){
 ////    setEarthS(&d_s1);
 ////    setInstData(&d_s1);
 //
-//    data_scen d_scen1;
+    data_scen d_scen1;
 //    setNewScen(&d_scen1);
 //    printf("\ncantidad: %i\n",d_scen1.nNewScen);
 //
-//    scenarios(&d_scen1);
+    scenarios(&d_scen1);
 
 };
 
