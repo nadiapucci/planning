@@ -3,7 +3,7 @@
 * @File : scenarios.c
 * @Author : Pucci, Nadia Amira
 * @Date : 06/04/2017
-* @brief : This function realizes the Fixed Scenarios Initialization
+* @brief : This function realizes the Scenarios Initialization
 *
 *********************************************** */
 #include <stdio.h>
@@ -118,18 +118,18 @@ void newScen(int ids, int nsc, vert_pnew *vpnew, float latScen[], float longScen
 /**
 *@brief Control New Scenarios
 *@param int nNewScen: number of new scenarios
-*@param int busy: scenario availability. 0: Empty, 1:Busy
-*@param int enable
+*@param int isbusy: scenario availability. 0: Empty, 1:Busy
+*@param int isenable
 *@returns
 */
 //void addNewScen(data_scen *d_scen){
 //    printf("entra a control_nscen\n");
 //    //int news: number of new scenario
-//    //int busy: scenario availability. 0: Empty, 1:Busy
-//    //int enable: Enable or disable the scenario. 0:Disable, 1:Enable
+//    //int isbusy: scenario availability. 0: Empty, 1:Busy
+//    //int isenable: isenable or disable the scenario. 0:Disable, 1:isenable
 //    int news[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-//    int busy[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-//    int enable[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+//    int isbusy[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+//    int isenable[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 //    int n_scen, temp, i;
 //
 //    n_scen=d_scen->nNewScen;
@@ -140,22 +140,22 @@ void newScen(int ids, int nsc, vert_pnew *vpnew, float latScen[], float longScen
 //    while(temp!=0){
 //        for(i=0;i<MAX_SC_NEW;i++){
 //            if(news[i]==0){
-//                if(busy[i]==0 && enable[i]==0) //state 000
+//                if(isbusy[i]==0 && isenable[i]==0) //state 000
 //                    printf("Estado 000. Generar nuevo escenario\n");
-//                else if(busy[i]==0 && enable[i]==1)
+//                else if(isbusy[i]==0 && isenable[i]==1)
 //                    printf("Estado 001. Estado no posible\n");
-//                else if(busy[i]==1 && enable[i]==0)
+//                else if(isbusy[i]==1 && isenable[i]==0)
 //                    printf("Estado 010. Escenario creado, ocupado pero no habilitado\n");
-//                else if(busy[i]==1 && enable[i]==1)
+//                else if(isbusy[i]==1 && isenable[i]==1)
 //                    printf("Estado 011. Escenario creado, ocupado y habilitado\n");}
 //            else if(news[i]==1){
-//                if(busy[i]==0 && enable[i]==0) //state 000
+//                if(isbusy[i]==0 && isenable[i]==0) //state 000
 //                    printf("Estado 100. Generar nuevo escenario. Posición vacía y deshabilitada\n");
-//                else if(busy[i]==0 && enable[i]==1)
+//                else if(isbusy[i]==0 && isenable[i]==1)
 //                    printf("Estado 101. Estado no posible\n");
-//                else if(busy[i]==1 && enable[i]==0)
+//                else if(isbusy[i]==1 && isenable[i]==0)
 //                    printf("Estado 110. Sobreescribir escenario deshabilitado, para ingresar uno nuevo\n");
-//                else if(busy[i]==1 && enable[i]==1)
+//                else if(isbusy[i]==1 && isenable[i]==1)
 //                    printf("Estado 111. Estado no posible\n");}
 //        }
 //        temp--;
@@ -167,11 +167,11 @@ void newScen(int ids, int nsc, vert_pnew *vpnew, float latScen[], float longScen
 void addNewScen(data_scen *d_scen){
     printf("entra a control_nscen\n");
     //int news: number of new scenario
-    //int busy: scenario availability. 0: Empty, 1:Busy
-    //int enable: Enable or disable the scenario. 0:Disable, 1:Enable
+    //int isbusy: scenario availability. 0: Empty, 1:Busy
+    //int isenable: isenable or disable the scenario. 0:Disable, 1:isenable
     int news[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    int busy[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    int enable[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int isbusy[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int isenable[MAX_SC_NEW]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     int n_scen, temp, i;
 
     n_scen=d_scen->nNewScen;
@@ -182,20 +182,20 @@ void addNewScen(data_scen *d_scen){
     while(temp!=0){
         for(i=0;i<MAX_SC_NEW;i++){
             if(news[i]==0){
-                if(busy[i]==0 && enable[i]==0) //state 000
+                if(isbusy[i]==0 && isenable[i]==0) //state 000
                     printf("Estado 000. Generar nuevo escenario\n");
-                else if(busy[i]==1 && enable[i]==0)
+                else if(isbusy[i]==1 && isenable[i]==0)
                     printf("Estado 010. Escenario creado, ocupado pero no habilitado\n");
-                else if(busy[i]==1 && enable[i]==1)
+                else if(isbusy[i]==1 && isenable[i]==1)
                     printf("Estado 011. Escenario creado, ocupado y habilitado\n");}
             else if(news[i]==1){
-                if(busy[i]==0 && enable[i]==0) //state 000
+                if(isbusy[i]==0 && isenable[i]==0) //state 000
                     printf("Estado 100. Generar nuevo escenario. Posición vacía y deshabilitada\n");
-                else if(busy[i]==0 && enable[i]==1)
+                else if(isbusy[i]==0 && isenable[i]==1)
                     printf("Estado 101. Estado no posible\n");
-                else if(busy[i]==1 && enable[i]==0)
+                else if(isbusy[i]==1 && isenable[i]==0)
                     printf("Estado 110. Sobreescribir escenario deshabilitado, para ingresar uno nuevo\n");
-                else if(busy[i]==1 && enable[i]==1)
+                else if(isbusy[i]==1 && isenable[i]==1)
                     printf("Estado 111. Estado no posible\n");}
         }
         temp--;
