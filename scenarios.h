@@ -42,7 +42,7 @@ int pnPoly(int scen, vert_p *vp,float X,float Y);
 
 void newScen(int ids, int nsc, vert_pnew *vpnew, float latScen[], float longScen[]);
 
-void addNewScen(data_scen *d_scen, vec_nScen *v_nscen);
+void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd);
 
 float *loadScen(data_scen *d_scen, float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW], float longitudeScen[MAX_SC_NEW][MAX_VERT_NEW],int i);
 
@@ -50,6 +50,6 @@ float *loadLatitudeNScen(data_scen *d_scen, float latitudeScen[MAX_SC_NEW][MAX_V
 
 float *loadLongitudeNScen(data_scen *d_scen, float longitudeScen[MAX_SC_NEW][MAX_VERT_NEW], int i);
 
-int scenarios();
+int scenarios(data_scen dscen1);
 
 #endif
