@@ -159,6 +159,11 @@ int nNewScenAvailable(bool news[], bool isbusy[], bool isenable[]){
 //    return isenable;
 //}
 
+/**
+*@brief Initialization of Vectors for add new scenario. This function must be executed at the start of the program.
+*@param vec_nScen *v_nscen
+*@returns
+*/
 void initNewScenVectors(vec_nScen *v_nscen){
     int i;
     for(i=0;i<MAX_SC_NEW;i++){
@@ -210,8 +215,8 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
     temp=nAdd;
     printf("temp: %i\n",temp);
 
-//    while(temp!=0){
-        for(i=0;i<temp;i++){
+    while(temp!=0){
+//        for(i=0;i<temp;i++){
             if(v_nscen->news[i]==0){
                 if(v_nscen->isbusy[i]==0){ //state 000 100 101 no se deberia pero lo tenes que cubrir lo mismo
                 //000 & 001
