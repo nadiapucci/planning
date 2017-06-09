@@ -215,8 +215,8 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
     temp=nAdd;
     printf("temp: %i\n",temp);
 
-    while(temp!=0){
-//        for(i=0;i<temp;i++){
+//    while(temp>0){
+        for(i=0;i<nAdd;i++){
             if(v_nscen->news[i]==0){
                 if(v_nscen->isbusy[i]==0){ //state 000 100 101 no se deberia pero lo tenes que cubrir lo mismo
                 //000 & 001
@@ -239,7 +239,7 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
                 }
             }
 
-        if(v_nscen->news[i]==1){
+        else if(v_nscen->news[i]==1){
             if(v_nscen->isbusy[i]==0 ){//state 100 & 101
                 //guardar el escenario
 //                loadScen(&d_scen.vertYNewScen[i][MAX_VERT_NEW], &d_scen.vertXNewScen[i][MAX_VERT_NEW], &latitudeScen[i][MAX_VERT_NEW], &longitudeScen[i][MAX_VERT_NEW]);
