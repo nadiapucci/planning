@@ -173,6 +173,7 @@ void initNewScenVectors(vec_nScen *v_nscen){
     }
 }
 
+//deberia tener una funcion que controle los estados!!!
 
 /**
 *@brief Add New Scenarios
@@ -215,32 +216,50 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
     temp=nAdd;
     printf("temp: %i\n",temp);
 
-//    while(temp>0){
-        for(i=0;i<nAdd;i++){
+        for(i=0;i<temp;i++){
             if(v_nscen->news[i]==0){
+                printf("news[i] 0\n");
                 if(v_nscen->isbusy[i]==0){ //state 000 100 101 no se deberia pero lo tenes que cubrir lo mismo
                 //000 & 001
+                    printf("busy[i] 0\n");
                     loadLatitudeNScen (d_scen, latitudeScen,i);
                     loadLongitudeNScen (d_scen, longitudeScen,i);
                     //con esta indico cuales escenarios tengo disponibles
                     printf("Escenario desocupado\n");
                     v_nscen->isbusy[i] = 1;
                     v_nscen->isenable[i] = d_scen->newScenState[i];
-                    temp--;
+//                    temp--;
                     printf("temp: %i\n",temp);}
+                else if(v_nscen->isbusy[i]==1 && v_nscen->isenable[i]==0){
+                    //controlar estado en el que quiero q este --> vector de estado.. habbilitado o no?
+                    //si lo tengo que dejar deshabilitado --> lo puedo sobreescribir --> corroborar
+                    printf("busy[i] 1\n");
+                    loadLatitudeNScen (d_scen, latitudeScen,i);
+                    loadLongitudeNScen (d_scen, longitudeScen,i);
+                    //con esta indico cuales escenarios tengo disponibles
+                    printf("Escenario desocupado\n");
+                    v_nscen->isbusy[i] = 1;
+                    v_nscen->isenable[i] = d_scen->newScenState[i];
+//                    temp--;
+                    printf("temp: %i\n",temp);
+                }
                 else if(v_nscen->isbusy[i]==1 && v_nscen->isenable[i]==1){
+                    printf("busy[i] 1\n");
                     //aca indico que no tengo escenarios disponibles para guardar nuevos
                     contBE++;
                     //contador que te cuente cuandtos tenes en este estado
                     //si es 10 no tenes espacio
                     //si es menor a diez te da los espacios disponibles 10-cont
                     printf("Estado 011. Escenario creado, ocupado y habilitado\n");
+                    temp++;
                     //return
                 }
             }
 
         else if(v_nscen->news[i]==1){
+                printf("news[i] 1\n");
             if(v_nscen->isbusy[i]==0 ){//state 100 & 101
+                printf("busy[i] 0\n");
                 //guardar el escenario
 //                loadScen(&d_scen.vertYNewScen[i][MAX_VERT_NEW], &d_scen.vertXNewScen[i][MAX_VERT_NEW], &latitudeScen[i][MAX_VERT_NEW], &longitudeScen[i][MAX_VERT_NEW]);
                 loadLatitudeNScen (d_scen, latitudeScen,i);
@@ -248,14 +267,17 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
                 v_nscen->isbusy[i] = 1;
                 v_nscen->isenable[i] = d_scen->newScenState[i];
                 printf("Estado 100. Generar nuevo escenario. Posición vacía y deshabilitada\n");
-                temp--;}
+//                temp--;
+            }
             else if(v_nscen->isbusy[i]==1 && v_nscen->isenable[i]==0){
+                printf("busy[i] 1\n");
                 loadLatitudeNScen (d_scen, latitudeScen,i);
                 loadLongitudeNScen (d_scen, longitudeScen,i);
                 v_nscen->isbusy[i] = 1;
                 v_nscen->isenable[i] = d_scen->newScenState[i];
                 printf("Estado 110. Sobreescribir escenario deshabilitado, para ingresar uno nuevo\n");
-                temp--;}
+//                temp--;
+            }
             else if(v_nscen->isbusy[i]==1 && v_nscen->isenable[i]==1){
                 //devolver que no hay escenarios disponibles
                 printf("Estado 111. Estado no posible\n");
@@ -309,6 +331,7 @@ float *loadLatitudeNScen(data_scen *d_scen, float latitudeScen[MAX_SC_NEW][MAX_V
     for(j=0; j <= MAX_VERT_NEW; j++){
 //        latitudeScen[j] = vertXNewScen[j];
         latitudeScen[i][j]=d_scen->vertXNewScen[i][j];
+//        printf("%f \n",latitudeScen[i][j]);
     }
     return *latitudeScen;
 }
@@ -356,6 +379,18 @@ int scenarios(data_scen dscen1){
     vec_nScen v_nscen;
     initNewScenVectors(&v_nscen);
 
+    navail=nNewScenAvailable(v_nscen.news,v_nscen.isbusy,v_nscen.isenable); //ctos escenarios hay disponibles?
+    printf("navail: %i\n",navail);
+
+    printf("dscen1: %i\n",dscen1.nNewScen);
+    if(dscen1.nNewScen<navail)
+        navail=dscen1.nNewScen;
+
+    printf("navail: %i\n",navail);
+    addNewScen(&dscen1,&v_nscen,navail);
+
+    //***********************
+    //segundo intento
     navail=nNewScenAvailable(v_nscen.news,v_nscen.isbusy,v_nscen.isenable); //ctos escenarios hay disponibles?
     printf("navail: %i\n",navail);
 
