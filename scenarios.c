@@ -352,7 +352,7 @@ int scenarios(){
 
     vec_nScen v_nscen;
     initNewScenVectors(&v_nscen);
-    addNewScen(&dscen1,&v_nscen
+    addNewScen(&dscen1,&v_nscen);
 
 
 
