@@ -195,20 +195,20 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
     int i, nScenAvailable=0, contBE=0, create=0;
     int temp, n;
 
-//    char filename[10] = "tlmy.txt";
-//    FILE *file;
-//
-//    printf("The namefile for telemetry is %s\n", filename);
-////    printf("Title file is %s\n", title);
-//
-//    file = fopen( filename, "w" );
-//    printf( "File: %s -> ", filename);
-//    if(file)
-//        printf( "Created (OPEN)\n" );
-//    else
-//    {
-//        printf( "Error\n" );
-//    }
+    char filename[10] = "tlmy.txt";
+    FILE *file;
+
+    printf("The namefile for telemetry is %s\n", filename);
+//    printf("Title file is %s\n", title);
+
+    file = fopen( filename, "w" );
+    printf( "File: %s -> ", filename);
+    if(file)
+        printf( "Created (OPEN)\n" );
+    else
+    {
+        printf( "Error\n" );
+    }
 
 
     n_scen=d_scen->nNewScen;
@@ -224,6 +224,7 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
                     printf("busy[i] 0\n");
                     loadLatitudeNScen (d_scen, latitudeScen,i);
                     loadLongitudeNScen (d_scen, longitudeScen,i);
+                    printCoordinates(latitudeScen,longitudeScen,i,file);
                     //con esta indico cuales escenarios tengo disponibles
                     printf("Escenario desocupado\n");
                     v_nscen->isbusy[i] = 1;
@@ -236,6 +237,7 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
                     printf("busy[i] 1\n");
                     loadLatitudeNScen (d_scen, latitudeScen,i);
                     loadLongitudeNScen (d_scen, longitudeScen,i);
+                    printCoordinates(latitudeScen,longitudeScen,i,file);
                     //con esta indico cuales escenarios tengo disponibles
                     printf("Escenario desocupado\n");
                     v_nscen->isbusy[i] = 1;
@@ -251,7 +253,7 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
                     //si es 10 no tenes espacio
                     //si es menor a diez te da los espacios disponibles 10-cont
                     printf("Estado 011. Escenario creado, ocupado y habilitado\n");
-                    temp++;
+                    if(temp<MAX_SC_NEW)temp++;
                     //return
                 }
             }
@@ -349,6 +351,27 @@ float *loadLongitudeNScen(data_scen *d_scen, float longitudeScen[MAX_SC_NEW][MAX
         longitudeScen[i][j] = d_scen->vertYNewScen[i][j];
     }
     return *longitudeScen;
+}
+
+/**
+*@brief Print Coordinates in the Screen
+*@param float latitudeScen[1][MAX_VERT_NEW]
+*@param float longitudeScen[1][MAX_VERT_NEW]
+*@param int i
+*@returns void
+*/
+void printCoordinates(float latitudeScen[1][MAX_VERT_NEW], float longitudeScen[1][MAX_VERT_NEW], int i,FILE *file){
+    int j;
+    printf("Coordenadas: \n");
+    printf("Latitudes: \n");
+    for(j=0;j<MAX_VERT_NEW;j++){
+        printf("%f\n",latitudeScen[i][j]);
+        fprintf (file, "%f\n", latitudeScen[i][j]);
+    }
+    printf("Longitudes: \n");
+    for(j=0;j<MAX_VERT_NEW;j++){
+        printf("%f\n",longitudeScen[i][j]);
+    }
 }
 
 
