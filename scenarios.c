@@ -362,16 +362,21 @@ float *loadLongitudeNScen(data_scen *d_scen, float longitudeScen[MAX_SC_NEW][MAX
 */
 void printCoordinates(float latitudeScen[1][MAX_VERT_NEW], float longitudeScen[1][MAX_VERT_NEW], int i,FILE *file){
     int j;
-    printf("Coordenadas: \n");
+    printf("ID Escenario: %i \n",i);
+    fprintf (file, "Escenario: %i \n",i);
     printf("Latitudes: \n");
+    fprintf (file, "Latitudes:\n");
     for(j=0;j<MAX_VERT_NEW;j++){
         printf("%f\n",latitudeScen[i][j]);
         fprintf (file, "%f\n", latitudeScen[i][j]);
     }
     printf("Longitudes: \n");
+    fprintf (file, "Longitudes:\n");
     for(j=0;j<MAX_VERT_NEW;j++){
         printf("%f\n",longitudeScen[i][j]);
+        fprintf (file, "%f\n", longitudeScen[i][j]);
     }
+    fprintf (file, "\n");
 }
 
 
