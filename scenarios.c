@@ -195,7 +195,7 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
     int i, nScenAvailable=0, contBE=0, create=0;
     int temp, n;
 
-    char filename[10] = "tlmy.txt";
+    char filename[10] = "input.txt";
     FILE *file;
 
     printf("The namefile for telemetry is %s\n", filename);
