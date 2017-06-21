@@ -1,6 +1,6 @@
 /* **********************************************
 *
-* @File : comm_func.c
+* @File : common.c
 * @Author : Pucci, Nadia Amira
 * @Date : 06/04/2017
 * @brief : Common Functions
@@ -8,7 +8,7 @@
 *********************************************** */
 #include <stdio.h>
 #include <math.h>
-#include "comm_func.h"
+#include "commmon.h"
 
 #define RE_WGS84    6378137.0           /* earth semimajor axis (WGS84) (m) */
 #define FE_WGS84    (1.0/298.257223563) /* earth flattening (WGS84) */

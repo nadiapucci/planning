@@ -1,14 +1,14 @@
 /* **********************************************
 *
-* @File : comm_func.h
+* @File : common.h
 * @Author : Pucci, Nadia Amira
 * @Date : 06/04/2017
 * @brief : Common Functions
 *
 *********************************************** */
 
-#ifndef _COMM_FUNC_H
-#define _COMM_FUNC_H
+#ifndef _COMMON_H
+#define _COMMON_H
 
 double dot(double *a, double *b, int length);
 
