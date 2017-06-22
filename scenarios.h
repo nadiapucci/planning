@@ -46,7 +46,7 @@ int nNewScenAvailable(bool news[], bool isbusy[], bool isenable[]);
 
 void initNewScenVectors(vec_nScen *v_nscen);
 
-void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd);
+bool addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd);
 
 float *loadScen(data_scen *d_scen, float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW], float longitudeScen[MAX_SC_NEW][MAX_VERT_NEW],int i);
 

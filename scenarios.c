@@ -180,20 +180,16 @@ void initNewScenVectors(vec_nScen *v_nscen){
 *@param data_scen *d_scen
 *@returns
 */
-void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
-//void addNewScen(data_scen *d_scen){
+bool addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
     printf("entra a addNewScen\n");
 
     float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW] = {0};
     float longitudeScen[MAX_SC_NEW][MAX_VERT_NEW] = {0};
 
-//    bool news[MAX_SC_NEW]={0};      /**<bool news: free scenario number. 0: Free, 1:New*/
-//    bool isbusy[MAX_SC_NEW]={0};    /**<bool isbusy: scenario availability. 0: Empty, 1:Busy*/
-//    bool isenable[MAX_SC_NEW]={0};  /**<bool isenable: scenario enable. 0:disable, 1:enable*/
-
     int n_scen; /**<number of scenarios to add*/
     int i, nScenAvailable=0, contBE=0, create=0;
     int temp, n;
+    int created=0;
 
     char filename[10] = "input.txt";
     FILE *file;
@@ -230,7 +226,8 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
                     v_nscen->isbusy[i] = 1;
                     v_nscen->isenable[i] = d_scen->newScenState[i];
 //                    temp--;
-                    printf("temp: %i\n",temp);}
+                    printf("temp: %i\n",temp);
+                    created=1;}
                 else if(v_nscen->isbusy[i]==1 && v_nscen->isenable[i]==0){
                     //controlar estado en el que quiero q este --> vector de estado.. habbilitado o no?
                     //si lo tengo que dejar deshabilitado --> lo puedo sobreescribir --> corroborar
@@ -244,6 +241,7 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
                     v_nscen->isenable[i] = d_scen->newScenState[i];
 //                    temp--;
                     printf("temp: %i\n",temp);
+                    created=1;
                 }
                 else if(v_nscen->isbusy[i]==1 && v_nscen->isenable[i]==1){
                     printf("busy[i] 1\n");
@@ -270,6 +268,7 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
                 v_nscen->isenable[i] = d_scen->newScenState[i];
                 printf("Estado 100. Generar nuevo escenario. Posición vacía y deshabilitada\n");
 //                temp--;
+                created=1;
             }
             else if(v_nscen->isbusy[i]==1 && v_nscen->isenable[i]==0){
                 printf("busy[i] 1\n");
@@ -279,6 +278,7 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
                 v_nscen->isenable[i] = d_scen->newScenState[i];
                 printf("Estado 110. Sobreescribir escenario deshabilitado, para ingresar uno nuevo\n");
 //                temp--;
+                created=1;
             }
             else if(v_nscen->isbusy[i]==1 && v_nscen->isenable[i]==1){
                 //devolver que no hay escenarios disponibles
@@ -301,6 +301,7 @@ void addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
 //        fprintf (file, "%i", isenable[i]);
         printf ("isenable[i]: %i\n",v_nscen->isenable[i]);
     }
+    return created;
 }
 //llamar los metodos para generar la telemetria
 
