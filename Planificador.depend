@@ -1,0 +1,59 @@
+# depslib dependency file v1.0
+1498095597 source:c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\attdeterm.c
+
+1498188066 source:c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\common.c
+	<stdio.h>
+	<math.h>
+	"common.h"
+
+1498188076 c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\common.h
+
+1496973262 source:c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\config.c
+	"config.h"
+	"scenarios.c"
+
+1498188246 c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\config.h
+	"data.h"
+	"tlmy.h"
+
+1498189396 c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\data.h
+
+1498187390 c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\tlmy.h
+
+1498189616 c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\scenarios.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<stdbool.h>
+	"scenarios.h"
+
+1498188990 c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\scenarios.h
+	"data.h"
+
+1492922063 source:c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\k-method_v8.c
+	<stdio.h>
+	<math.h>
+	<stdlib.h>
+
+1498186188 source:c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\main.c
+	<stdio.h>
+	<stdlib.h>
+	<strings.h>
+	<pthread.h>
+	<math.h>
+	"config.c"
+	"testcase_1.h"
+	"testcase_2.h"
+
+1498188618 c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\config.c
+	"config.h"
+	"scenarios.c"
+
+1491499442 c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\testcase_1.h
+
+1490815793 c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\testcase_2.h
+
+1498095598 source:c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\orbitdeterm.c
+
+1498095598 source:c:\users\nadia\google drive\mts_conae\tesis\codificación\mi_codigo\ext_soft\planning\predictiveevent.c
+

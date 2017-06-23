@@ -331,7 +331,7 @@ void config(){
     range=getRangeGPS();
 
     for(i=0;i<N_GPS;i++){
-        printf("\nrange[%i] get: %f\n",i,&range);
+        printf("\nrange[%i] get: %.f\n",i,&range);
         range++;}
 //
 ////    setDataSM(&d_s1);

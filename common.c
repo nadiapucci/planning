@@ -8,7 +8,7 @@
 *********************************************** */
 #include <stdio.h>
 #include <math.h>
-#include "commmon.h"
+#include "common.h"
 
 #define RE_WGS84    6378137.0           /* earth semimajor axis (WGS84) (m) */
 #define FE_WGS84    (1.0/298.257223563) /* earth flattening (WGS84) */
@@ -17,7 +17,7 @@
 /* Assume that a and b point to array with at least length elements */
  /* Assume that none of the intermediate values overflows a double. */
 
- double dot(double *a, double *b, int length) {
+ double dot(const double *a, const double *b, int length) {
 	double runningSum = 0;
 	int index;
 	for (index = 0; index < length; index++)

@@ -31,13 +31,15 @@ typedef struct data{
     float posGPS[MAX_GPS][3];          /**< Position GPS (ecef) (m)*/
     float velGPS[MAX_GPS][3];          /**< Velocity GPS (ecef) (m/s)*/
     float timeGPS[MAX_GPS];          /**< GPS time if it is available (sec)*/
-    int8_t timeCompGPS[MAX_GPS][6];  /**< GPS time: year, month, day, hour, min, sec*/
+    int timeCompGPS[MAX_GPS][6];  /**< GPS time: year, month, day, hour, min, sec*/
+//    int8_t timeCompGPS[MAX_GPS][6];  /**< GPS time: year, month, day, hour, min, sec*/
     float biasGPS[MAX_GPS];            /**< bias GPS*/
 
     /**< SM orbital data*/
     float posSM[3];           /**< Position x,y,z satellite for the current orbit from SM*/
     float velSM[3];           /**< Velocity x,y,z satellite for the current orbit from SM*/
-    uint8_t typePropagation;              /**< Type orbit propagation*/
+//    uint8_t typePropagation;              /**< Type orbit propagation*/
+    int typePropagation;              /**< Type orbit propagation*/
     float orbitParameters[6];        /**< Orbital parameters for the current orbit from SM*/
     float timeSM;           /**< Time from SM if it is available*/
 
@@ -63,13 +65,13 @@ typedef struct data{
 
 typedef struct data_scenarios{
     /**< States*/
-    uint8_t commState: 1;         /**< Comm Instrument state: 1st bit --> 0: no-transmitting, 1:transmitting;*/
-    uint8_t InstrumentState[MAX_INTRUMENTS][2];      /**< Instrument state: 1st bit --> 0: off, 1:on; 4bits --> substates*/
+    int commState: 1;         /**< Comm Instrument state: 1st bit --> 0: no-transmitting, 1:transmitting;*/
+    int InstrumentState[MAX_INTRUMENTS][2];      /**< Instrument state: 1st bit --> 0: off, 1:on; 4bits --> substates*/
 
     /**< New Scenarios*/
     int nNewScen;                  /**< Total scenarios number to include in the Plan */
 //    uint16_t newScenState: 10;      /**< Active states of new scenarios bit 0 to 9 --> 0 inactive scenario; 1 active scenario*/
-    uint16_t newScenState[MAX_SC_NEW];  /**< Active states of new scenarios --> 0 inactive scenario; 1 active scenario*/
+    int newScenState[MAX_SC_NEW];  /**< Active states of new scenarios --> 0 inactive scenario; 1 active scenario*/
 
     float vertXNewScen[MAX_SC_NEW][MAX_VERT_NEW]; /**<Latitudes of new scenarios*/
     float vertYNewScen[MAX_SC_NEW][MAX_VERT_NEW]; /**<Longitudes of new scenarios*/

@@ -10,7 +10,7 @@
 #ifndef _SCENARIOS_H
 #define _SCENARIOS_H
 
-//#include "data.h"
+#include "data.h"
 
 //typedef struct vertp{
 //    int nvp;
@@ -48,7 +48,7 @@ void initNewScenVectors(vec_nScen *v_nscen);
 
 bool addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd);
 
-float *loadScen(data_scen *d_scen, float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW], float longitudeScen[MAX_SC_NEW][MAX_VERT_NEW],int i);
+void *loadScen(data_scen *d_scen, float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW], float longitudeScen[MAX_SC_NEW][MAX_VERT_NEW],int i);
 
 float *loadLatitudeNScen(data_scen *d_scen, float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW], int i);
 

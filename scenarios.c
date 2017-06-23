@@ -23,7 +23,7 @@
 void initScenFixed(int ids, int nsc, vert_p *vp, float latScen[], float longScen[]){
 //    printf("\nEntro a init_scenf\n");
     //investigar un poco más y completar!
-    int f,c,j;
+    int f,c;
 
     //Inicializa todos los escenarios
     //En el caso que los escenarios esten inactivos se igualan a 0
@@ -91,7 +91,7 @@ int pnPoly(int scen, vert_p *vp,float X,float Y)
 void newScen(int ids, int nsc, vert_pnew *vpnew, float latScen[], float longScen[]){
 //    printf("\nEntro a init_scenf\n");
     //investigar un poco más y completar!
-    int f,c,j;
+    int f,c;
 
     //Inicializa todos los escenarios
     //En el caso que los escenarios esten inactivos se igualan a 0
@@ -123,7 +123,7 @@ void newScen(int ids, int nsc, vert_pnew *vpnew, float latScen[], float longScen
 */
 int nNewScenAvailable(bool news[], bool isbusy[], bool isenable[]){
     int i;
-    int contAvail=0, contDisavail=0;
+    int contAvail;
     for(i=0;i<MAX_SC_NEW;i++){
         if(news[i]==0){
             if(isbusy[i]==0)
@@ -185,10 +185,8 @@ bool addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
 
     float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW] = {0};
     float longitudeScen[MAX_SC_NEW][MAX_VERT_NEW] = {0};
-
-    int n_scen; /**<number of scenarios to add*/
-    int i, nScenAvailable=0, contBE=0, create=0;
-    int temp, n;
+    int i, contBE=0;
+    int temp;
     int created=0;
 
     char filename[10] = "input.txt";
@@ -206,9 +204,6 @@ bool addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
         printf( "Error\n" );
     }
 
-
-    n_scen=d_scen->nNewScen;
-    printf("n_scen: %i\n",d_scen->nNewScen);
     temp=nAdd;
     printf("temp: %i\n",temp);
 
@@ -313,7 +308,7 @@ bool addNewScen(data_scen *d_scen, vec_nScen *v_nscen, int nAdd){
 *@param int i
 *@returns
 */
-float *loadScen(data_scen *d_scen, float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW], float longitudeScen[MAX_SC_NEW][MAX_VERT_NEW],int i){
+void *loadScen(data_scen *d_scen, float latitudeScen[MAX_SC_NEW][MAX_VERT_NEW], float longitudeScen[MAX_SC_NEW][MAX_VERT_NEW],int i){
     int j;
     for(j=0; j <= MAX_VERT_NEW; j++){
         latitudeScen[i][j] = d_scen->vertYNewScen[i][j];
@@ -391,7 +386,14 @@ int scenarios(data_scen dscen1){
     vert_p vp1;
     float xs=-106.0;
     float ys=35.0;
-    int c,d,navail,e;
+    int c,d,navail;
+
+    latSc0 = {-115.0, -115.0, -107.0, -102.0, -102.0};
+    longSc0 = {37.0, 32.0, 33.0, 31.0, 35.0};
+    latSc1 = {-120.0, -120.0, -102.0, -102.0, -95.0};
+    longSc1 = {33.0, 28.0, 28.0, 25.0, 25.0};
+    latSc2 = {-120.0, -120.0, -102.0, -102.0, -95.0, -80.0, -83.0, -82.0};
+    longSc2 = {33.0, 28.0, 28.0, 25.0, 25.0, 24.0, 23.0, 23.0};
 
     /**<Load Fixed Scenarios*/
     initScenFixed(0,NSC0,&vp1,latSc0,longSc0);
