@@ -8,16 +8,9 @@
 *********************************************** */
 
 
-void suma(x,y)
-{
-    int s;
-    s=x+y;
-    printf("suma: %i",s);
- }
+#ifndef _TESTCASE_1_H
+#define _TESTCASE_1_H
 
- void *testcase_1(){
-     int a,b;
-    a=2;
-    b=5;
-    suma(a,b);
-     }
+void testcase_1();
+
+#endif

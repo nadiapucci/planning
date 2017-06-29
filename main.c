@@ -21,8 +21,7 @@
 /**
  * Test cases
  */
-#include "testcase_1.h"
-#include "testcase_2.h"
+#include "testcase_1.c"
 
 void *thTestSelection(void *msj) {
 
@@ -69,69 +68,83 @@ void *thTestSelection(void *msj) {
  @brief This main func
  @ return nothing
  */
+//int main(void) {
+//    const char *message1 = "Thread Test Case Selection"; //imprime mensaje para saber que esta haciendo
+//    const char *message2 = "Thread Test Case Running";
+//    pthread_t thTestCase;
+//    //dclaración de threads para test cases
+//    pthread_t thtcase;
+//    int stat, i=0, tc;
+//    FILE *file;
+//    char filename[15] = "testcase.txt";
+//    char buffer[15];
+//
+//    printf("File :%s\n", __FILE__ );
+//    printf("Date :%s\n", __DATE__ );
+//    printf("Time :%s\n", __TIME__ );
+////    printf("Line :%d\n", __LINE__ );
+////    printf("ANSI :%d\n", __STDC__ );
+//
+//    // Thread que selecciona el Test Case a ejecutar
+//    stat = pthread_create(&thTestCase, NULL, thTestSelection, (void*) message1);
+//    if ( 0 != stat ) { raise(SIGINT); }
+//
+//    // Esperamos a que finalice el thread de seleccion
+//	stat = pthread_join(thTestCase, NULL);
+//	if ( 0 != stat ) { raise(SIGINT); }
+//
+//	//Para iniciar el hilo del test seleccionado
+//	file = fopen( filename, "r" );
+//    if(file)
+//        printf( "Creado (ABIERTO)\n" );
+//    else
+//    {
+//        printf( "Error (NO ABIERTO)\n" );
+//    }
+//
+//    fgets(buffer, sizeof(buffer) ,file);
+//    while(buffer[i]!='\n'){
+//        i++;
+//    }
+//    //tc=atoi(&buffer[i-1]);
+//
+//    //deberia ejecutar la configuracion segun corresponda al test
+//
+////	//Generar un puntero al test case correspondiente y lanzarlo
+////    switch(tc){
+////        case 1:
+////            // Thread que selecciona el Test Case a ejecutar
+////            stat = pthread_create(&thtcase, NULL, testcase_1(), (void*) message2);
+////            if ( 0 != stat ) { raise(SIGINT); }
+////            break;
+////        case 2:
+////            stat = pthread_create(&thtcase, NULL, testcase_2(), (void*) message2);
+////            if ( 0 != stat ) { raise(SIGINT); }
+////            break;
+////    }
+//
+//// Esperamos a que finalice el thread de seleccion
+////	stat = pthread_join(thtcase, NULL);
+////	if ( 0 != stat ) { raise(SIGINT); }
+//
+////    init_scenf(); /*inicializar scenarios fijos */
+//
+//    config();
+//
+//    return 0;
+//}
+
+/**
+ @brief This main func
+ @ return nothing
+ */
 int main(void) {
-    const char *message1 = "Thread Test Case Selection"; //imprime mensaje para saber que esta haciendo
-    const char *message2 = "Thread Test Case Running";
-    pthread_t thTestCase;
-    //dclaración de threads para test cases
-    pthread_t thtcase;
-    int stat, i=0, tc;
-    FILE *file;
-    char filename[15] = "testcase.txt";
-    char buffer[15];
 
     printf("File :%s\n", __FILE__ );
     printf("Date :%s\n", __DATE__ );
     printf("Time :%s\n", __TIME__ );
-//    printf("Line :%d\n", __LINE__ );
-//    printf("ANSI :%d\n", __STDC__ );
 
-    // Thread que selecciona el Test Case a ejecutar
-    stat = pthread_create(&thTestCase, NULL, thTestSelection, (void*) message1);
-    if ( 0 != stat ) { raise(SIGINT); }
-
-    // Esperamos a que finalice el thread de seleccion
-	stat = pthread_join(thTestCase, NULL);
-	if ( 0 != stat ) { raise(SIGINT); }
-
-	//Para iniciar el hilo del test seleccionado
-	file = fopen( filename, "r" );
-    if(file)
-        printf( "Creado (ABIERTO)\n" );
-    else
-    {
-        printf( "Error (NO ABIERTO)\n" );
-    }
-
-    fgets(buffer, sizeof(buffer) ,file);
-    while(buffer[i]!='\n'){
-        i++;
-    }
-    //tc=atoi(&buffer[i-1]);
-
-    //deberia ejecutar la configuracion segun corresponda al test
-
-//	//Generar un puntero al test case correspondiente y lanzarlo
-//    switch(tc){
-//        case 1:
-//            // Thread que selecciona el Test Case a ejecutar
-//            stat = pthread_create(&thtcase, NULL, testcase_1(), (void*) message2);
-//            if ( 0 != stat ) { raise(SIGINT); }
-//            break;
-//        case 2:
-//            stat = pthread_create(&thtcase, NULL, testcase_2(), (void*) message2);
-//            if ( 0 != stat ) { raise(SIGINT); }
-//            break;
-//    }
-
-// Esperamos a que finalice el thread de seleccion
-//	stat = pthread_join(thtcase, NULL);
-//	if ( 0 != stat ) { raise(SIGINT); }
-
-//    init_scenf(); /*inicializar scenarios fijos */
-
-    config();
+    testcase_1();
 
     return 0;
 }
-
