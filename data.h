@@ -26,18 +26,17 @@
 #define NSC2 8     /**< numbers of new scenario 3 vertices*/
 
 /**<latitudes of new scenario 1*/
-static float latSc0[NSC0]; //= {-115.0, -115.0, -107.0, -102.0, -102.0};
-//latSc0 = {-115.0, -115.0, -107.0, -102.0, -102.0};
+static float latSc0[NSC0] = {-115.0, -115.0, -107.0, -102.0, -102.0};
 /**<longitudes of new scenario 1*/
-static float longSc0[NSC0];// = {37.0, 32.0, 33.0, 31.0, 35.0};
+static float longSc0[NSC0] = {37.0, 32.0, 33.0, 31.0, 35.0};
 
 /**<latitudes of new scenario 2*/
-static float latSc1[NSC1];// = {-120.0, -120.0, -102.0, -102.0, -95.0};
+static float latSc1[NSC1] = {-120.0, -120.0, -102.0, -102.0, -95.0};
 /**<longitudes of new scenario 2*/
-static float longSc1[NSC1];// = {33.0, 28.0, 28.0, 25.0, 25.0};
+static float longSc1[NSC1] = {33.0, 28.0, 28.0, 25.0, 25.0};
 
 /**<latitudes of new scenario 3*/
-static float latSc2[NSC2];// = {-120.0, -120.0, -102.0, -102.0, -95.0, -80.0, -83.0, -82.0};
+static float latSc2[NSC2] = {-120.0, -120.0, -102.0, -102.0, -95.0, -80.0, -83.0, -82.0};
 /**<longitudes of new scenario 3*/
-static float longSc2[NSC2];// = {33.0, 28.0, 28.0, 25.0, 25.0, 24.0, 23.0, 23.0};
+static float longSc2[NSC2] = {33.0, 28.0, 28.0, 25.0, 25.0, 24.0, 23.0, 23.0};
 

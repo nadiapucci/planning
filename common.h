@@ -10,7 +10,7 @@
 #ifndef _COMMON_H
 #define _COMMON_H
 
-double dot(const double *a, const double *b, int length);
+double dot(double *a, double *b, int length);
 
 extern void ecef2pos(const double *r, double *pos);
 

@@ -107,7 +107,7 @@ int main(void) {
     while(buffer[i]!='\n'){
         i++;
     }
-    tc=atoi(&buffer[i-1]);
+    //tc=atoi(&buffer[i-1]);
 
     //deberia ejecutar la configuracion segun corresponda al test
 
